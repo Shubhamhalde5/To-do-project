@@ -1,0 +1,87 @@
+ <div *ngIf="isLoggedIn==0 " >
+  <div class="username">
+    <h3>To-Do Project</h3><br>
+    Username : <input type="text" [(ngModel)]="username"><br><br>
+    password : <input type="password" [(ngModel)]="password"><br><br>
+    <button (click)="login()">Login</button>
+    <button (click)="regipage()">Register</button>
+    <br>
+  </div>
+  <br>
+
+    <b>Project By:- </b>Shubham Suresh Halde<br>
+    <b>Email id:-</b>Shubhamhalde7058@gmail.com<br>
+    <b>Institute Name:-</b>Hefshine software pvt.ltd<br><br>
+
+
+</div>
+      <div *ngIf="isLoggedIn==1">
+      <h2>Welcome {{student.name}}</h2>
+      <button (click)="logout()">logout</button><br>
+      <b>Available Courses</b>
+    <table border="1">
+        <tr>
+        <td>Id</td>
+        <td>Details</td>
+        <td>Duration</td>
+        <td>Status</td>
+        <td>Action</td>
+  </tr> 
+  <tr *ngFor="let course of courses, let i=index">
+    <td>{{i+1}}</td>
+    <td>{{course.details}}</td>
+    <td>{{course.duration}}</td>
+    <td>{{course.status}}</td>
+     <button (click)="apply(course)">Apply</button>
+  </tr>
+</table>
+      <button (click)="getAppliedCourses()">Applied Courses</button>
+      <div *ngIf="appliedCourses==1">
+        <table border="1">
+          <tr>
+            <td>Id</td>
+            <td>Details</td>
+            <td>Duration</td>
+            <td>Status</td>
+          </tr> 
+          <tr *ngFor="let course of student.courses, let i=index">
+           <td>{{i+1}}</td>
+           <td>{{course.details}}</td>
+           <td>{{course.duration}}</td>
+           <td>{{course.status}}</td>
+          </tr>
+        </table>
+        <button (click)="hide()">hide</button>
+      </div>
+</div>
+<div *ngIf="isLoggedIn==2">
+  <h2>Welcome {{admin.name}} </h2>
+  
+<button (click)="logout()">logout</button>
+<table border="1">
+  <tr>
+  <td>Id</td>
+  <td>Details</td>
+  <td>Duration</td>
+  <td>Action</td>
+  </tr>
+  <tr *ngFor="let course of admin.courses, let i=index">
+    <td>{{i+1}}</td>
+    <td>{{course.details}}</td>
+    <td>{{course.duration}}</td>
+     <td><button (click)="delete(course.id)">Delete</button></td> 
+  </tr>
+</table>
+  <b>Add New Course</b><br>
+  Details : <input type="text" [(ngModel)]="cDetails"><br> <br>
+  Duration : <input type="number" [(ngModel)]="cDuration"><br>
+  <button (click)="add()">Add</button> 
+</div>
+<div *ngIf="isLoggedIn==3">
+  <h3 >New Registeration </h3>
+   Name : <input type="text" [(ngModel)]="name" ><br> <br>
+   Username : <input type="text" [(ngModel)]="nusername"><br><br>
+   password : <input type="password" [(ngModel)]="npassword"><br><br>
+   <button (click)="register()">Submit</button>
+   <button (click)="logout()">LogOut</button>
+ </div>
